@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Farmnet | Smart Farming Solutions for Uganda</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5fff5;
+      color: #1b381b;
+      scroll-behavior: smooth;
+    }
+    header {
+      background-color: #2e7d32;
+      color: white;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .logo {
+      height: 40px;
+      animation: bounceIn 0.8s ease-out;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+      animation: slideInLeft 1s ease-out;
+    }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+      position: relative;
+    }
+    nav a:hover {
+      color: #c8facc;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: #c8facc;
+      transition: width 0.3s;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 100px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #a5d6a7, #e8f5e9);
+      animation: fadeIn 1.2s ease-out;
+    }
+    .hero h2 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 18px;
+      max-width: 700px;
+    }
+    .cta-button {
+      margin-top: 30px;
+      padding: 12px 28px;
+      font-size: 16px;
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .cta-button:hover {
+      background-color: #1b5e20;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+    }
+    .cta-button:active {
+      transform: translateY(1px);
+    }
+
+    .features, .impact, .testimonials, .success-stories {
+      padding: 60px 30px;
+      background-color: white;
+    }
+    .features h3, .impact h3, .testimonials h3, .success-stories h3 {
+      text-align: center;
+      font-size: 30px;
+      color: #2e7d32;
+      margin-bottom: 40px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+    .box {
+      background: #e8f5e9;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      transition: all 0.3s;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    }
+    .box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.12);
+    }
+    .box i {
+      font-size: 30px;
+      color: #2e7d32;
+      margin-bottom: 15px;
+    }
+
+    .impact-stats {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 30px;
+      text-align: center;
+    }
+    .impact-stat {
+      flex: 1;
+      min-width: 200px;
+    }
+    .impact-stat h4 {
+      font-size: 36px;
+      color: #2e7d32;
+      margin: 10px 0;
+    }
+
+    .testimonials {
+      background: #f8fdf8;
+    }
+    .testimonial {
+      background: #f1f8f2;
+      border-left: 5px solid #66bb6a;
+      padding: 25px;
+      font-style: italic;
+      position: relative;
+      transition: all 0.5s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s forwards;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+    .testimonial:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+    .testimonial:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+    .testimonial::before {
+      content: '"';
+      font-size: 60px;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: rgba(46, 125, 50, 0.1);
+      font-family: serif;
+      line-height: 1;
+    }
+    .testimonial:hover {
+      transform: translateY(-5px) !important;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .testimonial-author {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #2e7d32;
+      font-style: normal;
+    }
+
+    /* New Success Stories Section */
+    .success-stories {
+      background: linear-gradient(135deg, #e8f5e9, #f1f8f2);
+    }
+    .story-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.8s forwards;
+    }
+    .story-card:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+    .story-card:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+    .story-card:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+    .story-card:hover {
+      transform: translateY(-10px) !important;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    .story-image {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+    }
+    .story-content {
+      padding: 20px;
+    }
+    .story-location {
+      display: flex;
+      align-items: center;
+      color: #2e7d32;
+      margin-bottom: 10px;
+    }
+    .story-location i {
+      margin-right: 8px;
+    }
+    .story-title {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .story-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-value {
+      font-weight: bold;
+      color: #2e7d32;
+      font-size: 18px;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: #666;
+    }
+
+    footer {
+      background-color: #2e7d32;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    footer p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes slideInLeft {
+      from {opacity: 0; transform: translateX(-50px);}
+      to {opacity: 1; transform: translateX(0);}
+    }
+    @keyframes bounceIn {
+      0% {transform: scale(0.5); opacity: 0;}
+      50% {transform: scale(1.1);}
+      100% {transform: scale(1); opacity: 1;}
+    }
+    @keyframes fadeUp {
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes pulse {
+      0% {transform: scale(1);}
+      50% {transform: scale(1.05);}
+      100% {transform: scale(1);}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <img src="logo.jpg" alt="Farmnet Logo" class="logo">
+      <h1>Farmnet </h1>
+    </div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="contact us.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Revolutionizing Ugandan Agriculture Through Technology</h2>
+    <p>Farmnet Uganda is a digital platform providing Ugandan farmers with real-time access to markets, pricing, logistics, and expert agricultural advice. We connect, empower, and grow agribusinesses across Uganda.</p>
+    <button class="cta-button" onclick="location.href='services.html'">Get Started</button>
+  </section>
+
+  <section class="features">
+    <h3>Core Features</h3>
+    <div class="grid">
+      <div class="box">
+        <i class="fas fa-store"></i>
+        <h4>Market Access</h4>
+        <p>Direct access to buyers and sellers with transparent pricing.</p>
+      </div>
+      <div class="box">
+        <i class="fas fa-chart-bar"></i>
+        <h4>Smart Pricing</h4>
+        <p>Real-time price updates from trusted data sources.</p>
+      </div>
+      <div class="box">
+        <i class="fas fa-truck"></i>
+        <h4>Logistics Matching</h4>
+        <p>Find affordable transport to move your produce efficiently.</p>
+      </div>
+      <div class="box">
+        <i class="fas fa-leaf"></i>
+        <h4>Agri-Advisory</h4>
+        <p>Farming tips and expert advice tailored to your location.</p>
+      </div>
+      <div class="box">
+        <i class="fas fa-database"></i>
+        <h4>Data Insights</h4>
+        <p>AI-driven recommendations based on farm data and trends.</p>
+      </div>
+      <div class="box">
+        <i class="fas fa-lock"></i>
+        <h4>Secure Platform</h4>
+        <p>Farmer-first design with privacy and safety at its core.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="impact">
+    <h3>Our Impact in Uganda</h3>
+    <div class="impact-stats">
+      <div class="impact-stat">
+        <h4>10,000+</h4>
+        <p>Ugandan Farmers Supported</p>
+      </div>
+      <div class="impact-stat">
+        <h4>1.2M+</h4>
+        <p>Kgs of Produce Traded</p>
+      </div>
+      <div class="impact-stat">
+        <h4>500+</h4>
+        <p>Ugandan Traders and Buyers</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h3>What Ugandan Farmers Say</h3>
+    <div class="grid">
+      <div class="testimonial">
+        Farmnet has helped me find better buyers and understand the market. I can now plan my harvest better and get fair prices for my crops. The mobile app is so easy to use even in rural areas with slow internet.
+        <span class="testimonial-author">– Rose, Mbarara (Coffee Farmer)</span>
+      </div>
+      <div class="testimonial">
+        The pricing data saved me from losses when prices suddenly dropped last season. And the logistics coordination is a life-saver! I no longer worry about how to transport my produce to the market.
+        <span class="testimonial-author">– James, Kabale (Maize Farmer)</span>
+      </div>
+      <div class="testimonial">
+        As a woman farmer, I feel more empowered with Farmnet. I can negotiate better prices and connect with other women farmers in my region to share experiences and solutions.
+        <span class="testimonial-author">– Sarah, Gulu (Vegetable Farmer)</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="success-stories">
+    <h3>Farmer Success Stories</h3>
+    <div class="grid">
+      
+      <div class="story-card">
+        <img src="maize.jpeg" alt="Farmer from Mbale" class="story-image">
+        <div class="story-content">
+          <div class="story-location">
+            <i class="fas fa-map-marker-alt"></i> Mbale, Uganda
+          </div>
+          <h4 class="story-title">From Struggles to Surplus</h4>
+          <p>With Farmnet's guidance, Amina tripled her maize yield in just one season, accessing markets she never thought possible.</p>
+          <div class="story-stats">
+            <div class="stat-item">
+              <div class="stat-value">+300%</div>
+              <div class="stat-label">Yield Increase</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">150</div>
+              <div class="stat-label">New Buyers</div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="story-card">
+        <img src="irrig.jpeg" alt="Farmer from Mbarara" class="story-image">
+        <div class="story-content">
+          <div class="story-location">
+            <i class="fas fa-map-marker-alt"></i> Mbarara, Uganda
+          </div>
+          <h4 class="story-title">Smart Irrigation Wins</h4>
+          <p>Samuel adopted precision irrigation through Farmnet’s IoT advice, saving 40% water and gaining sustainable profits.</p>
+          <div class="story-stats">
+            <div class="stat-item">
+              <div class="stat-value">40%</div>
+              <div class="stat-label">Water Saved</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">+25%</div>
+              <div class="stat-label">Net Profit</div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="story-card">
+        <img src="dairy.jpeg" alt="Farmer from Arua" class="story-image">
+        <div class="story-content">
+          <div class="story-location">
+            <i class="fas fa-map-marker-alt"></i> Arua, Uganda
+          </div>
+          <h4 class="story-title">Digital Dairy Transformation</h4>
+          <p>Grace now tracks her milk production and sales using Farmnet's tools — improving delivery times and reducing waste.</p>
+          <div class="story-stats">
+            <div class="stat-item">
+              <div class="stat-value">5x</div>
+              <div class="stat-label">Faster Logistics</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">-30%</div>
+              <div class="stat-label">Milk Wastage</div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </section>
+  
+
+  <footer>
+    <p>&copy; 2025 Farmnet Uganda. Empowering Ugandan Farmers Nationwide 🌱</p>
+    <p>Contact: info@farmnet.ug | +256 750065243 | Kabale, Uganda</p>
+  </footer>
+
+</body>
+</html>
